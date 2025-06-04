@@ -1,0 +1,381 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+  body {
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  .avatar {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .navbar .logo img {
+    height: 50px;
+  }
+  
+  .navbar nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+  }
+  
+  .nav-buttons button {
+    margin-left: 10px;
+    padding: 6px 14px;
+    border: none;
+    background: orange;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Main Section */
+  .main-section {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    text-align: center;
+  }
+  
+  .main-section h2 {
+    margin-bottom: 10px;
+  }
+  
+  .search-filter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .search-filter input,
+  .search-filter select {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .btn {
+    padding: 3px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: orange;
+    color: #fff;
+}
+  
+  /* Mentor Cards */
+  .mentor-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 360px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+    background: #ccc;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+  }
+  
+  .card h4 {
+    margin: 10px 0 4px;
+  }
+  
+  .card .rating {
+    color: #5544dd;
+    font-weight: bold;
+    margin: 8px 0;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  
+  .tags span {
+    background: #eee;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .btn-purple {
+    background: #6a0dad;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-purple a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+  .btn-outline {
+    border: 1px solid #6a0dad;
+    color: #6a0dad;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /*setting*/
+.settings-btn {
+    padding: 10px 16px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .settings-popup {
+    position: absolute;
+    top: 100px;
+    right: 40px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 100;
+    width: 280px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .switch-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 15px;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: #ccc;
+    transition: 0.4s;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #4a90e2;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(16px);
+  }
+  
+  .logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .popup-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .popup-buttons button {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #ddd;
+  }
+  
+   .save-settings {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .cancel-btn {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 8px 16px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: #bbb;
+}
+
+
+
+  /* Dark mode overrides */
+.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.dark-mode header,
+.dark-mode .footer,
+.dark-mode .settings-popup {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border-color: #333;
+}
+
+.dark-mode nav a,
+.dark-mode .btn,
+.dark-mode .settings-btn {
+  color: #f1f1f1;
+}
+
+.dark-mode table {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+.dark-mode .card {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+  
+  /* Footer */
+  .footer {
+    background: #fff;
+    padding: 30px 50px 0;
+    border-top: 1px solid #ccc;
+    position: relative;
+  }
+  
+  .footer-left {
+    text-align: left;
+    max-width: 300px;
+  }
+  
+  .footer-left h3 {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    color: #000;
+  }
+  
+  .footer-line {
+    width: 60px;
+    height: 2px;
+    background-color: #000;
+    border: none;
+    margin-bottom: 15px;
+  }
+  
+  .footer-left p {
+    margin: 6px 0;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .footer-bottom {
+    margin-top: 30px;
+    background-color: #f7941e;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+  }
+  

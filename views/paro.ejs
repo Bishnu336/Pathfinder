@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentor Profile</title>
+  <link rel="stylesheet" href="/css/cst.css" />
+</head>
+<body>
+   <!-- Header -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="/images/logo.jpg" alt="Pathfinder Logo"  height="60">
+    </div>
+    <nav>
+      <a href="home">Home</a>
+      <a href="resources">Resources</a>
+      <a href="mentorship">Mentorship</a>
+      <a href="dashboard">Dashboard</a>
+    </nav>
+    <div class="nav-buttons">
+      <button class="btn-orange"><a href="profile">Profile</a></button>
+      
+      <button class="settings-btn" onclick="toggleSettings()">Settings</button>
+      <div id="settingsPopup" class="settings-popup hidden">
+        <h4>Settings</h4>
+        <label class="switch-label">Enable Notifications
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </label>
+        <label class="switch-label">Dark Mode
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </label>
+        <label class="switch-label">Email Updates
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </label>
+        <button class="logout-btn">Logout</button>
+        <div class="popup-buttons">
+          <button onclick="toggleSettings()">Cancel</button>
+          <button id="saveSettingsBtn" class="save-settings">Save Changes</button>
+
+        </div>
+      </div>
+    </div>
+  </header> 
+
+    
+  <!-- PCE Section -->
+<section class="college-section">
+  <div class="college-header">
+    <img src="/images/paro.jpg" alt="Paro College of Education" class="college-img">
+    <div>
+      <h1>Paro College of Education</h1>
+      <p>Paro, Bhutan</p>
+    </div>
+    <a href="https://www.pce.edu.bt/" class="visit-btn" target="_blank">Visit Website</a>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tab-bar">
+    <button class="tab active" data-tab="overview" onclick="showTab('overview')">Overview</button>
+    <button class="tab" data-tab="academics" onclick="showTab('academics')">Academics</button>
+    <button class="tab" data-tab="campus-life" onclick="showTab('campus-life')">Campus Life</button>
+  </div>
+
+  <!-- Tab Contents -->
+  <div class="tab-content" id="overview-content">
+    <div class="quick-facts">
+      <h3>Quick Facts</h3>
+      <div class="facts-grid">
+        <div><p>Founded</p><strong>1975</strong></div>
+        <div><p>Total Enrollment</p><strong>1000+ Students</strong></div>
+        <div><p>Undergraduate</p><strong>800+ Students</strong></div>
+        <div><p>Graduate</p><strong>200+ Students</strong></div>
+      </div>
+    </div>
+
+    <div class="about-college">
+      <h3>About Paro College of Education</h3>
+      <p>
+        Paro College of Education (PCE), established in 1975, is one of the oldest and most prestigious teacher education institutes under the Royal University of Bhutan.
+        It is committed to preparing competent and reflective educators equipped to serve the nation.
+      </p>
+      <p>
+        Located in the scenic valley of Paro, the college provides a conducive environment for learning and research. It offers a range of undergraduate and postgraduate programmes focused on teacher education, guidance and counselling, and inclusive education.
+      </p>
+      <p>
+        The campus is well-equipped with hostels, academic blocks, IT and AV centers, a central library, and sports facilities. PCE emphasizes holistic development through academics, spiritual growth, and professional training.
+      </p>
+    </div>
+  </div>
+
+  <div class="tab-content hidden" id="academics-content">
+    <h3>About PCE Academics</h3>
+
+    <hr style="margin: 1.5rem 0; border-top: 1px solid #ccc;" />
+
+    <h4>Programmes Offered</h4>
+    <ul>
+      <li>Bachelor of Education (Primary)</li>
+      <li>Bachelor of Education (Secondary)</li>
+      <li>Bachelor of Education in Inclusive and Special Education</li>
+      <li>Master of Education in Educational Leadership</li>
+      <li>Postgraduate Diploma in Education (PGDE)</li>
+    </ul>
+
+    <hr style="margin: 1.5rem 0; border-top: 1px solid #ccc;" />
+
+    <h3>PCE Admission Instructions & Eligibility</h3>
+    <p><strong>Before applying</strong>, ensure you meet the eligibility criteria and have understood the course requirements.</p>
+
+    <h4>Eligibility Criteria</h4>
+    <ul>
+      <li>Class XII pass students with English and Dzongkha competency</li>
+      <li>Applicants passionate about education and community development</li>
+    </ul>
+
+    <h4>Application Process</h4>
+    <ul>
+      <li>Applications are made through RUB Online Admissions Portal</li>
+      <li>Shortlisted candidates may be called for interviews or entrance tests</li>
+    </ul>
+
+    <h4>Funding Options</h4>
+    <ul>
+      <li>Government Scholarship (Merit-based)</li>
+      <li>Self-financed admissions available</li>
+    </ul>
+
+    <p>For detailed information, please visit the official PCE website or contact the Academic Affairs Office.</p>
+
+    <hr style="margin: 1.5rem 0; border-top: 1px solid #ccc;" />
+
+    <h3>PCE Fee Structure – 2025 Academic Year</h3>
+
+    <table border="1" cellspacing="0" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+      <thead style="background-color: #f2f2f2;">
+        <tr>
+          <th>#</th>
+          <th>Item</th>
+          <th>Amount (Nu.) Yearly</th>
+          <th>Amount (Nu.) Semester Wise</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Tuition Fee</td>
+          <td>54,000</td>
+          <td>27,000</td>
+          <td>Payable in two installments</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Library & ICT Fee</td>
+          <td>1,500</td>
+          <td>-</td>
+          <td>One-time per year</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Hostel Rent</td>
+          <td>3,000</td>
+          <td>1,500</td>
+          <td>Approximate</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Security Deposit</td>
+          <td>2,000</td>
+          <td>-</td>
+          <td>Refundable upon graduation</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Mess Fee</td>
+          <td>20,000</td>
+          <td>10,000</td>
+          <td>Estimated; may vary</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Total per semester: Nu. 38,000+</strong></p>
+    <p><em>Note: Fees are indicative and subject to updates from the college.</em></p>
+  </div>
+
+  <div class="tab-content hidden" id="campus-life-content">
+    <h3>Campus Life at PCE</h3>
+    <p>
+      Life at Paro College of Education is rich with learning, spiritual reflection, and cultural engagement. The college promotes community living through hostel accommodation, co-curricular activities, and regular college-wide events such as meditation sessions, literary festivals, and sporting tournaments.
+    </p>
+
+    <div class="campus-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 1rem;">
+      <img src="/images/paro1.webp" alt="PCE Campus 1" style="width: 100%; border-radius: 8px;">
+      <img src="/images/paro2.jpg" alt="PCE Campus 2" style="width: 100%; border-radius: 8px;">
+      <img src="/images/paro3.jpg" alt="PCE Campus 3" style="width: 100%; border-radius: 8px;">
+      <img src="/images/paro4.jpg" alt="PCE Campus 4" style="width: 100%; border-radius: 8px;">
+    </div>
+  </div>
+</section>
+
+  <div class="footer">
+    <div class="footer-left">
+      <p><strong>Contact Us</strong></p>
+      <p><i>📍</i> Kanglung, Trashigang, Bhutan</p>
+      <p><i>📞</i> 17235678</p>
+      <p><i>📧</i> Pathfinder@gmail.com</p>
+    </div>
+    <div class="footer-bottom">© 2025 Pathfinder. All rights reserved.</div>
+  </div>
+
+  <script src="/js/cst.js"></script>
+</body>
+</html>

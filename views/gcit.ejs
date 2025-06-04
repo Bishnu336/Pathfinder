@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentor Profile</title>
+  <link rel="stylesheet" href="/css/cst.css" />
+</head>
+<body>
+   <!-- Header -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="images/logo.jpg" alt="Pathfinder Logo"  height="60">
+    </div>
+    <nav>
+      <a href="home">Home</a>
+      <a href="resources">Resources</a>
+      <a href="mentorship">Mentorship</a>
+      <a href="dashboard">Dashboard</a>
+    </nav>
+    <div class="nav-buttons">
+      <button class="btn-orange"><a href="profile">Profile</a></button>
+      
+      <button class="settings-btn" onclick="toggleSettings()">Settings</button>
+      <div id="settingsPopup" class="settings-popup hidden">
+        <h4>Settings</h4>
+        <label class="switch-label">Enable Notifications
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </label>
+        <label class="switch-label">Dark Mode
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </label>
+        <label class="switch-label">Email Updates
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </label>
+        <button class="logout-btn">Logout</button>
+        <div class="popup-buttons">
+          <button onclick="toggleSettings()">Cancel</button>
+          <button id="saveSettingsBtn" class="save-settings">Save Changes</button>
+
+        </div>
+      </div>
+    </div>
+  </header> 
+
+    
+  <!-- GCIT Section -->
+<section class="college-section">
+  <div class="college-header">
+    <img src="images/gcit.jpg" alt="GCIT" class="college-img">
+    <div>
+      <h1>Gyalpozhing College of Information Technology</h1>
+      <p>Chamjekha, Thimphu, Bhutan</p>
+    </div>
+    <a href="https://www.gcit.edu.bt/" class="visit-btn" target="_blank">Visit Website</a>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tab-bar">
+    <button class="tab active" data-tab="overview" onclick="showTab('overview')">Overview</button>
+    <button class="tab" data-tab="academics" onclick="showTab('academics')">Academics</button>
+    <button class="tab" data-tab="campus-life" onclick="showTab('campus-life')">Campus Life</button>
+  </div>
+
+  <!-- Tab Contents -->
+  <div class="tab-content" id="overview-content">
+    <div class="quick-facts">
+      <h3>Quick Facts</h3>
+      <div class="facts-grid">
+        <div><p>Founded</p><strong>2017</strong></div>
+        <div><p>Total Enrollment</p><strong>700+ Students</strong></div>
+        <div><p>Undergraduate</p><strong>All Students</strong></div>
+      </div>
+    </div>
+
+    <div class="about-college">
+      <h3>About Gyalpozhing College of Information Technology</h3>
+      <p>
+        Gyalpozhing College of Information Technology (GCIT) is a specialized constituent college under the Royal University of Bhutan established in 2017.
+        It aims to provide quality IT education to prepare students with industry-relevant skills in emerging technologies.
+      </p>
+      <p>
+        GCIT offers undergraduate programs focusing on Artificial Intelligence, Blockchain, Cybersecurity, Full Stack Development, and Interactive Design. The college is equipped with modern IT labs, a library, and supports innovative learning.
+      </p>
+      <p>
+        The campus is located in Chamjekha, Thimphu, offering a conducive environment for students to develop both academically and personally.
+      </p>
+    </div>
+  </div>
+
+  <div class="tab-content hidden" id="academics-content">
+    <h3>GCIT Academics</h3>
+
+    <hr style="margin: 1.5rem 0; border-top: 1px solid #ccc;" />
+
+    <h4>Programmes Offered</h4>
+    <p>
+      The College offers:
+      <ul>
+        <li>Bachelor of Computer Science (AI Development & Data Science)</li>
+        <li>Bachelor of Computer Science (Blockchain Development)</li>
+        <li>Bachelor of Computer Science (Full Stack Development)</li>
+        <li>Bachelor of Computer Science (Cybersecurity)</li>
+        <li>Bachelor of Interactive Design & Development</li>
+      </ul>
+    </p>
+
+    <hr style="margin: 1.5rem 0; border-top: 1px solid #ccc;" />
+
+    <h3>GCIT Admission Instructions & Eligibility</h3>
+    <p><strong>Before applying</strong>, please read the instructions carefully and ensure you meet the admission requirements.</p>
+
+    <h4>Who Can Apply?</h4>
+    <ul>
+      <li>Students who have passed Class XII and meet eligibility criteria.</li>
+      <li>Applicants committed to completing a 4-year IT program.</li>
+    </ul>
+
+    <h4>When to Apply?</h4>
+    <ul>
+      <li>Review programs carefully before applying.</li>
+      <li>Apply through the GCIT Admission Portal when ready.</li>
+      <li><strong>Last date for online registration: 15 March 2025</strong></li>
+      <li>Application final once submitted; program category changes are not allowed.</li>
+    </ul>
+
+    <h4>Application Conditions</h4>
+    <p>Choose only <strong>one</strong> program category:</p>
+    <ul>
+      <li><strong>Category A:</strong> AI Development, Blockchain, Cybersecurity.</li>
+      <li><strong>Category B:</strong> Full Stack Development, Interactive Design & Development.</li>
+    </ul>
+
+    <h4>Funding Options</h4>
+    <ul>
+      <li>Government Scholarship (Higher-Education Grant)</li>
+      <li>Self-Financed</li>
+    </ul>
+    <p>Ensure accurate personal details and an active contact number to receive your application notification.</p>
+
+    <hr style="margin: 1.5rem 0; border-top: 1px solid #ccc;" />
+
+    <h3>GCIT Fee Structure – 2025 Academic Year</h3>
+
+    <table border="1" cellspacing="0" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+      <thead style="background-color: #f2f2f2;">
+        <tr>
+          <th>#</th>
+          <th>Item</th>
+          <th>Amount (Nu.) Yearly</th>
+          <th>Amount (Nu.) Semester Wise</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Tuition Fee</td>
+          <td>95,349</td>
+          <td>47,675</td>
+          <td>2% yearly increase; payable in two installments</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Institutional Development Fund (IDF)</td>
+          <td>1,500</td>
+          <td>-</td>
+          <td>One-time fee; non-refundable</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Hostel Rent</td>
+          <td>2,500</td>
+          <td>1,250</td>
+          <td>For 5 months @ Nu. 250/month (Semester I)</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Security Deposit / Confirmation Fee</td>
+          <td>7,500</td>
+          <td>-</td>
+          <td>Refundable on graduation (T&C apply)</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Semso</td>
+          <td>360</td>
+          <td>180</td>
+          <td>Per semester</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Mess/Meals</td>
+          <td>22,500</td>
+          <td>11,250</td>
+          <td>Applicable only to girls (boys are self-catering)</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Hostel Cleaning & Waste Management</td>
+          <td>1,530</td>
+          <td>-</td>
+          <td>170/month (July, Dec, Jan waived); boys only</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Tracksuit</td>
+          <td>1,250</td>
+          <td>-</td>
+          <td>Mandatory for new students</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Total per semester: Nu. 30,000</strong></p>
+    <p><em>Note: Fees are subject to change as per college policy.</em></p>
+
+  </div>
+
+  <div class="tab-content hidden" id="campus-life-content">
+    <h3>Campus Life at GCIT</h3>
+    <p>
+      GCIT provides a modern learning environment with state-of-the-art IT labs, a well-stocked library, and ample co-curricular opportunities.
+      Students enjoy a collaborative atmosphere encouraging creativity and innovation.
+    </p>
+
+    <div class="campus-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 1rem;">
+      <img src="images/GCIT.jpg" alt="GCIT Campus 1" style="width: 100%; border-radius: 8px;">
+      <img src="images/gcit2.jpg" alt="GCIT Campus 2" style="width: 100%; border-radius: 8px;">
+      <img src="images/gcit3.jpg" alt="GCIT Campus 3" style="width: 100%; border-radius: 8px;">
+      <img src="images/gcit4.jpg" alt="GCIT Campus 4" style="width: 100%; border-radius: 8px;">
+    </div>
+  </div>
+</section>
+
+
+
+  <div class="footer">
+    <div class="footer-left">
+      <p><strong>Contact Us</strong></p>
+      <p><i>📍</i> Kanglung, Trashigang, Bhutan</p>
+      <p><i>📞</i> 17235678</p>
+      <p><i>📧</i> Pathfinder@gmail.com</p>
+    </div>
+    <div class="footer-bottom">© 2025 Pathfinder. All rights reserved.</div>
+  </div>
+
+  <script src="/js/cst.js"></script>
+</body>
+</html>

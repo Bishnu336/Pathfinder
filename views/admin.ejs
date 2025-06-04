@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - Pathfinder</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="<%= settings && settings.darkMode ? 'dark-mode' : '' %>">
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="/images/logo.jpg" alt="Pathfinder Logo" height="60" />
+    </div>
+    <nav>
+      <a href="/admin/dashboard" class="active">Dashboard</a>
+      <a href="/admin/users">Users</a>
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Dashboard Overview Cards -->
+  <section class="dashboard-cards">
+    <div class="card">
+      <h3>Total Users</h3>
+      <p><%= stats && stats.totalUsers ? stats.totalUsers : 0 %></p>
+
+    </div>
+    <div class="card">
+      <h3>Active Mentors</h3>
+      <p><%= stats?.activeMentors || 0 %></p>
+    </div> 
+    <div class="card">
+      <h3>Meetings Scheduled</h3>
+      <p><%= stats?.meetings || 0 %></p>
+    </div>
+    <div class="card">
+      <h3>Feedback Received</h3>
+      <p><%= stats?.feedback || 0 %></p>
+    </div>
+  </section>
+
+  <!-- Management Panels -->
+  <section class="management-panels">
+
+    <!-- Users Panel -->
+    <div class="panel">
+      <h3>👥 Recent Users</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (users && users.length > 0) { %>
+            <% users.forEach(user => { %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.role %></td>
+                <td>
+                  <form action="/admin/users/delete/<%= user.id %>?from=dashboard" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                    <button type="submit" class="btn-delete">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr><td colspan="4">No users found.</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Meetings Panel -->
+    <div class="panel">
+      <h3>📅 Scheduled Meetings</h3>
+      <ul>
+        <% if (meetings && meetings.length > 0) { %>
+          <% meetings.forEach(meeting => { %>
+            <li>
+              <strong><%= meeting.topic %></strong> with <%= meeting.professor %><br>
+              <i><%= new Date(meeting.date).toDateString() %></i>
+              at <%= meeting.time ? meeting.time.slice(0, 5) : 'N/A' %><br>
+              by <%= meeting.name %> (<%= meeting.email %>)
+            </li>
+          <% }) %>
+        <% } else { %>
+          <li>No meetings scheduled yet.</li>
+        <% } %>
+      </ul>
+
+      <a href="/manage-meetings">
+        <button class="btn-view-all">Manage Meetings</button>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-left">
+      <p><strong>Contact Us</strong></p>
+      <p><i>📍</i> Kanglung, Trashigang, Bhutan</p>
+      <p><i>📞</i> 17235678</p>
+      <p><i>📧</i> Pathfinder@gmail.com</p>
+    </div>
+    <div class="footer-bottom">© 2025 Pathfinder. All rights reserved.</div>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

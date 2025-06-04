@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Profiles</title>
+  <link rel="stylesheet" href="/css/user.css" />
+</head>
+<body>
+  <a href="/admin" class="go-back-button">←</a>
+
+  <h2>All Submitted Student Profiles</h2>
+
+  <!-- Search Form -->
+  <form method="GET" action="/admin/users" style="margin: 20px 0;">
+  <input
+    type="text"
+    name="search"
+    placeholder="Search by name, stream, or recommendation..."
+    value="<%= typeof search !== 'undefined' ? search : '' %>"
+    style="padding: 8px; width: 300px;"
+  />
+  <button type="submit" style="padding: 8px;">Search</button>
+</form>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Stream</th>
+        <th>English</th>
+        <th>Dzongkha</th>
+        <th>Subject1</th>
+        <th>Subject2</th>
+        <th>Optional</th>
+        <th>Location</th>
+        <th>Submitted At</th>
+        <th>Recommendation</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% profiles.forEach(profile => { %>
+      <tr id="row-<%= profile.id %>">
+        <form action="/admin/users/edit/<%= profile.id %>" method="POST">
+          <td><input type="text" name="full_name" value="<%= profile.full_name %>" readonly required></td>
+          <td><input type="email" name="email" value="<%= profile.email %>" readonly required></td>
+          <td><input type="text" name="phone" value="<%= profile.phone %>" readonly required></td>
+          <td><input type="text" name="stream" value="<%= profile.stream %>" readonly></td>
+          <td><input type="number" name="english" value="<%= profile.english %>" readonly></td>
+          <td><input type="number" name="dzongkha" value="<%= profile.dzongkha %>" readonly></td>
+          <td><input type="number" name="subject1" value="<%= profile.subject1 %>" readonly></td>
+          <td><input type="number" name="subject2" value="<%= profile.subject2 %>" readonly></td>
+          <td><input type="number" name="optional" value="<%= profile.optional %>" readonly></td>
+          <td><input type="text" name="location" value="<%= profile.location %>" readonly></td>
+          <td><%= profile.submitted_at ? new Date(profile.submitted_at).toISOString().split('T')[0] : 'N/A' %></td>
+          <td><%= profile.recommendation || 'N/A' %></td>
+          <td>
+            <button type="button" class="edit-btn" id="edit-<%= profile.id %>" onclick="enableEdit('<%= profile.id %>')">Edit</button>
+            <button type="submit" class="save-btn" id="save-<%= profile.id %>">Save</button>
+          </td>
+        </form>
+        <td>
+          <form action="/admin/users/delete/<%= profile.id %>" method="POST" onsubmit="return confirm('Are you sure?')">
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <script src="/js/user.js"></script>
+</body>
+</html>

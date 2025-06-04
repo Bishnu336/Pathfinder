@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manage Meetings</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+
+</head>
+<body>
+  <h1>Manage Scheduled Meetings</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Topic</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Professor</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% meetings.forEach(meeting => { %>
+        <tr>
+          <form action="/update-meeting/<%= meeting.id %>" method="POST">
+            <td><input type="text" name="topic" value="<%= meeting.topic %>" required></td>
+            <td><input type="date" name="date" value="<%= meeting.date.toISOString().split('T')[0] %>" required></td>
+            <td><input type="time" name="time" value="<%= meeting.time.slice(0,5) %>" required></td>
+            <td><input type="text" name="name" value="<%= meeting.name %>" required></td>
+            <td><input type="email" name="email" value="<%= meeting.email %>" required></td>
+            <td><input type="text" name="professor" value="<%= meeting.professor %>" required></td>
+            <td class="actions">
+              <button type="submit">💾 Save</button>
+          </form>
+              <form method="POST" action="/delete-meeting/<%= meeting.id %>" onsubmit="return confirmDelete()">
+             <button type="submit">Delete</button>
+            </form>
+
+            </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <a href="/admin">← Back to Admin Dashboard</a>
+  
+  <script>
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this meeting?");
+  }
+</script>
+
+</body>
+</html>

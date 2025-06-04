@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pathfinder Mentorship</title>
+  <link rel="stylesheet" href="/css/ms.css"/>
+</head>
+<body class="<%= settings.darkMode ? 'dark-mode' : '' %>">
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="/images/logo.jpg" alt="Pathfinder Logo"  height="60">
+    </div>
+    <nav>
+      <a href="home">Home</a>
+      <a href="resources">Resources</a>
+      <a href="mentorship">Mentorship</a>
+      <a href="dashboard">Dashboard</a>
+    </nav>
+
+    <div class="nav-buttons">
+      <a href="/profile" class="btn btn-orange">Profile</a>
+      <form action="/toggle-settings" method="POST" style="display:inline;">
+        <button type="submit" class="settings-btn">Settings</button>
+      </form>
+    </div>
+
+    <% if (showSettings) { %>
+    <div class="settings-popup">
+      <h4>Settings</h4>
+      <form action="/save-settings" method="POST">
+        <label class="switch-label">
+          Enable Notifications
+          <input type="checkbox" name="notifications" <%= settings.notifications ? "checked" : "" %> />
+        </label>
+        <label class="switch-label">
+          Dark Mode
+          <input type="checkbox" name="darkMode" <%= settings.darkMode ? "checked" : "" %> />
+        </label>
+        <label class="switch-label">
+          Email Updates
+          <input type="checkbox" name="emailUpdates" <%= settings.emailUpdates ? "checked" : "" %> />
+        </label>
+        <button type="submit" class="save-settings">Save Changes</button>
+      </form>
+
+      <form action="/logout" method="GET" style="display:inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+      </form>
+
+      <form action="/toggle-settings" method="POST" style="display:inline;">
+        <button type="submit" class="cancel-btn">Cancel</button>
+      </form>
+    </div>
+    <% } %>
+  </header>
+
+  <!-- Main Section -->
+  <section class="main-section">
+    <h2>Find Your Perfect Mentor</h2>
+    <p>Connect with experienced mentors who can guide you through your academic journey</p>
+
+    
+    <div class="mentor-cards">
+      <!-- Mentor Card 1 -->
+      <div class="card">
+        <div class="avatar">
+  <img src="/images/dr.1.png" alt="Dr. Sarah Chen">
+</div>
+
+        <h4>Dr. Sarah Chen</h4>
+        <p>College Admissions Expert<br>Stanford University</p>
+        <p class="rating">4.9 Rating (127 students)</p>
+        <div class="tags">
+          <span>College Applications</span>
+          <span>Essay Writing</span>
+          <span>Interview Prep</span>
+        </div>
+        <div class="buttons">
+          <a href="sm1" class="btn-purple">Schedule Meeting</a>
+          <a href="profile1" class="btn-outline">View Profile</a>
+        </div>
+      </div>
+
+      <!-- Mentor Card 2 -->
+      <div class="card">
+        <div class="avatar">
+  <img src="/images/dr.3.png" alt="Dr. Sarah Chen">
+</div>
+
+        <h4>Prof. Sonam Tenzin</h4>
+        <p>Academic Advisor<br>MIT</p>
+        <p class="rating">4.8 Rating (98 students)</p>
+        <div class="tags">
+          <span>STEM Programs</span>
+          <span>Research Projects</span>
+          <span>Scholarship Applications</span>
+        </div>
+        <div class="buttons">
+          <a href="sm2" class="btn-purple">Schedule Meeting</a>
+          <a href="profile2" class="btn-outline">View Profile</a>
+        </div>
+      </div>
+
+      <!-- Mentor Card 3 -->
+      <div class="card">
+        <div class="avatar">
+  <img src="/images/dr.2.png" alt="Dr. Sarah Chen">
+</div>
+
+        <h4>Dr. Wangmo</h4>
+        <p>Career Counselor<br>Sherubtse College</p>
+        <p class="rating">4.9 Rating (156 students)</p>
+        <div class="tags">
+          <span>Career Planning</span>
+          <span>Resume Building</span>
+          <span>Leadership Development</span>
+        </div>
+        <div class="buttons">
+          <a href="sm3" class="btn-purple">Schedule Meeting</a>
+          <a href="profile3" class="btn-outline">View Profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-left">
+      <h3>Contact Us</h3>
+      <hr class="footer-line">
+      <p><strong>📍 Kanglung</strong> - Trashigang, Bhutan</p>
+      <p><strong>📞</strong> 17235678</p>
+      <p><strong>✉️</strong> Pathfinder@gmail.com</p>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Pathfinder. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

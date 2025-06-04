@@ -1,0 +1,149 @@
+<!-- views/home.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>home</title>
+  <link rel="stylesheet" href="/css/home.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body class="<%= settings.darkMode ? 'dark-mode' : '' %>">
+  <header>
+    <div class="logo">
+      <img src="/images/logo.jpg" alt="Logo" height="60">
+    </div>
+
+    <nav>
+      <a href="/home">Home</a>
+      <a href="/resources">Resources</a>
+      <a href="/mentorship">Mentorship</a>
+      <a href="/dashboard">Dashboard</a>
+    </nav>
+
+    <div class="nav-buttons">
+      <a href="/profile" class="btn btn-orange">Profile</a>
+      <form action="/toggle-settings" method="POST" style="display:inline;">
+  <button type="submit" class="settings-btn">Settings</button>
+</form>
+
+    </div>
+
+    <% if (showSettings) { %>
+    <div class="settings-popup">
+      <h4>Settings</h4>
+      <form action="/save-settings" method="POST">
+        <label class="switch-label">
+          Enable Notifications
+          <input type="checkbox" name="notifications" <%= settings.notifications ? "checked" : "" %> />
+        </label>
+        <label class="switch-label">
+          Dark Mode
+          <input type="checkbox" name="darkMode" <%= settings.darkMode ? "checked" : "" %> />
+        </label>
+        <label class="switch-label">
+          Email Updates
+          <input type="checkbox" name="emailUpdates" <%= settings.emailUpdates ? "checked" : "" %> />
+        </label>
+        <button type="submit" class="save-settings">Save Changes</button>
+      </form>
+
+      <form action="/logout" method="GET" style="display:inline;">
+  <button type="submit" class="logout-btn">Logout</button>
+</form>
+
+<form action="/toggle-settings" method="POST" style="display:inline;">
+  <button type="submit" class="cancel-btn">Cancel</button>
+</form>
+
+    </div>
+    <% } %>
+  </header>
+
+  <section class="hero">
+    <img src="/images/img3.jpg" alt="Graduation celebration">
+  </section>
+
+  <section class="intro">
+    <h2>Find the Right College for You</h2>
+    <p>Explore colleges aligned with your interest, goals, and academic performance...</p>
+    <em>“Your Guide Through The College Maze”</em>
+  </section>
+
+  <section class="announcements">
+    <h3>Latest Announcements</h3>
+    <table>
+      <tr><td>2025 Admissions Open</td></tr>
+      <tr><td>New Program Launched: Data Science College</td></tr>
+      <tr><td>Scholarship Deadlines Near</td></tr>
+    </table>
+  </section>
+
+  <section class="colleges">
+        <h3 style="text-align: center; font-size: 2rem; font-weight: bold;">Colleges</h3>
+        <div class="carousel-container">
+  <button class="carousel-arrow left">&#10094;</button>
+  
+  <div class="carousel-track-wrapper">
+    <div class="carousel-track">
+      <a href="/colleges/cst" class="card">
+        <img src="images/cst.jpg">
+        <div class="card-body">College of Sciences and Technology</div>
+      </a>
+
+                    <a href="/colleges/gcbs" class="card">
+                    <img src="images/GCBS.jpg">
+                    <div class="card-body">Gedu College of Business Studies</div>
+                    </a>
+
+                    <a href="/colleges/paro" class="card">
+                    <img src="images/paro.jpg">
+                    <div class="card-body">Paro College of Education</div>
+                    </a>
+
+                    <a href="/colleges/sherubtse" class="card">
+                    <img src="images/sherubtse.jpg">
+                    <div class="card-body">Sherubtse College</div>
+                    </a>
+
+                    <a href="/colleges/cnr" class="card">
+                    <img src="images/cnr.jpg">
+                    <div class="card-body">College of Natural Resources</div>
+                    </a>
+
+                    <a href="/colleges/clcs" class="card">
+                    <img src="images/cst.jpg">
+                    <div class="card-body">College of language and Cultural Studies</div>
+                    </a>
+
+                    <a href="/colleges/kgumbs" class="card">
+                    <img src="images/cst.jpg">
+                    <div class="card-body">Khesar Gyalpo University of Medical Science of Bhutan</div>
+                    </a>
+                    
+                    <a href="/colleges/gcit" class="card">
+                    <img src="images/cst.jpg">
+                    <div class="card-body">Gyalpozhing College of Information Technology </div>
+                    </a>
+                </div>
+                
+            </div>
+            <button class="carousel-arrow right">&#10095;</button>
+        </div>
+    </section>
+
+  <footer class="footer">
+    <div class="footer-left">
+      <h3>Contact Us</h3>
+      <hr class="footer-line">
+      <p><strong>📍 Kanglung</strong> - Trashigang, Bhutan</p>
+      <p><strong>📞</strong> 17235678</p>
+      <p><strong>✉️</strong> Pathfinder@gmail.com</p>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Pathfinder. All rights reserved.
+    </div>
+  </footer>
+  <script src="/js/home.js"></script>
+</body>
+</html>

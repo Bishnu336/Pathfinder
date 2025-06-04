@@ -1,0 +1,79 @@
+table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"] {
+      width: 100%;
+      padding: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 6px 10px;
+      border: none;
+      cursor: pointer;
+      margin: 2px;
+    }
+
+    .edit-btn {
+      background-color: #cce5ff;
+      color: #004085;
+    }
+
+    .save-btn {
+      background-color: #d4edda;
+      color: green;
+      display: none;
+    }
+
+    .delete-btn {
+      background-color: #f8d7da;
+      color: red;
+    }
+
+    input[readonly] {
+      background-color: #f9f9f9;
+      border: none;
+    }
+
+    .search-form {
+      margin-top: 20px;
+    }
+
+    .search-form input[type="text"] {
+      padding: 8px;
+      width: 300px;
+    }
+
+    .search-form button {
+      padding: 8px 14px;
+      background-color: #007bff;
+      color: white;
+    }
+
+    .go-back-button {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.go-back-button:hover {
+  background-color: #388E3C;
+}

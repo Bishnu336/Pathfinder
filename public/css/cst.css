@@ -1,0 +1,307 @@
+body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .navbar .logo img {
+      height: 50px;
+    }
+
+    .navbar nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+    }
+
+    .nav-buttons button {
+      margin-left: 10px;
+      padding: 6px 14px;
+      border: none;
+      background: orange;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .settings-btn {
+      padding: 10px 16px;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .settings-popup {
+      position: absolute;
+      top: 100px;
+      right: 40px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 100;
+      width: 280px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .switch-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 22px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      background-color: #ccc;
+      transition: 0.4s;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #4a90e2;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(16px);
+    }
+
+    .logout-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .popup-buttons button {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      background: #ddd;
+    }
+
+    .save-settings {
+      background-color: orange;
+      color: white;
+    }
+
+    .college-section {
+      padding: 2rem;
+      max-width: 1100px;
+      margin: auto;
+      background: #fff;
+    }
+
+    .college-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .college-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .visit-btn {
+      padding: 0.5rem 1rem;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: auto;
+    }
+
+    .tab-bar {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      border: none;
+      background-color: #eee;
+      cursor: pointer;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .tab.active {
+      background-color: orange;
+      color: white;
+    }
+
+    .tab-content {
+      margin-top: 20px;
+    }
+
+    .quick-facts {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 1.5rem 0;
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .about-college {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 50px;
+      background: #fff;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      width: 100%;
+      background: #ff9800;
+      color: white;
+      padding: 10px 0;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .tab-content.hidden {
+      display: none;
+    }
+
+    /* Gallery */
+.campus-gallery img {
+  object-fit: cover;
+  height: 120px;
+}
+
+
+/* RESPONSIVE LAYOUT */
+@media (max-width: 1024px) {
+    .top-cards {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .middle-section {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard {
+      padding: 1rem;
+    }
+  
+    .card {
+      min-width: 100%;
+    }
+  
+    .match-scores, .deadlines {
+      min-width: 100%;
+    }
+  
+    .activity-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .progress-bar span {
+      font-size: 0.8rem;
+    }
+  
+    .deadline strong {
+      font-size: 1rem;
+    }
+  
+    .card h4 {
+      font-size: 1rem;
+    }
+  
+    .card p {
+      font-size: 1rem;
+    }
+  }  
+

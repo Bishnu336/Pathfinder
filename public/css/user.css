@@ -1,53 +1,68 @@
+/* Base table styling */
 table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-    th {
-      background-color: #f4f4f4;
-    }
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow-x: auto;
+  display: block;
+}
 
-    input[type="text"],
-    input[type="email"],
-    input[type="number"] {
-      width: 100%;
-      padding: 4px;
-      box-sizing: border-box;
-    }
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: middle;
+}
 
-    button {
-      padding: 6px 10px;
-      border: none;
-      cursor: pointer;
-      margin: 2px;
-    }
+th {
+  background-color: #f4f4f4;
+}
 
-    .edit-btn {
-      background-color: #cce5ff;
-      color: #004085;
-    }
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  width: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
 
-    .save-btn {
-      background-color: #d4edda;
-      color: green;
-      display: none;
-    }
+/* Buttons */
+button {
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  margin: 2px;
+  font-size: 14px;
+  border-radius: 4px;
+}
 
-    .delete-btn {
-      background-color: #f8d7da;
-      color: red;
-    }
+.edit-btn {
+  background-color: #cce5ff;
+  color: #004085;
+}
 
-    input[readonly] {
-      background-color: #f9f9f9;
-      border: none;
-    }
+.save-btn {
+  background-color: #d4edda;
+  color: green;
+  display: none;
+}
 
-    .search-form {
+.delete-btn {
+  background-color: #f8d7da;
+  color: red;
+}
+
+/* Read-only field styling */
+input[readonly] {
+  background-color: #f9f9f9;
+  border: none;
+  color: #333;
+}
+
+/* Search form */
+ .search-form {
       margin-top: 20px;
     }
 
@@ -62,7 +77,9 @@ table {
       color: white;
     }
 
-    .go-back-button {
+
+/* Back button */
+.go-back-button {
   display: inline-block;
   margin-bottom: 15px;
   padding: 8px 16px;
@@ -76,4 +93,45 @@ table {
 
 .go-back-button:hover {
   background-color: #388E3C;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 6px;
+  }
+
+  td {
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .edit-btn, .save-btn, .delete-btn {
+    width: 100%;
+    margin-top: 6px;
+  }
 }

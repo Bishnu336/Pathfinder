@@ -10,7 +10,7 @@ body {
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
-      background: white;
+      background: #11173f;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
@@ -21,7 +21,7 @@ body {
     .navbar nav a {
       margin: 0 15px;
       text-decoration: none;
-      color: #000;
+      color: #fff;
       font-weight: 500;
     }
 
@@ -237,7 +237,7 @@ body {
     .footer-bottom {
       text-align: center;
       width: 100%;
-      background: #ff9800;
+      background: #11173f;
       color: white;
       padding: 10px 0;
       font-size: 14px;
@@ -305,3 +305,65 @@ body {
     }
   }  
 
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1rem;
+  }
+
+  .card,
+  .match-scores,
+  .deadlines {
+    min-width: 100%;
+  }
+
+  .activity-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .tab-bar {
+    justify-content: center;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .progress-bar span {
+    font-size: 0.8rem;
+  }
+
+  .deadline strong {
+    font-size: 1rem;
+  }
+
+  .card h4,
+  .card p {
+    font-size: 1rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .navbar nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tab {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}

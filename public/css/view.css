@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
-    background: white;
+    background: #11173f;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
@@ -15,7 +15,7 @@
   .navbar nav a {
     margin: 0 15px;
     text-decoration: none;
-    color: #000;
+    color: #fff;
     font-weight: 500;
   }
   
@@ -397,7 +397,7 @@ main {
   .footer-bottom {
     text-align: center;
     width: 100%;
-    background: #ff9800;
+    background: #11173f;
     color: white;
     padding: 10px 0;
     font-size: 14px;

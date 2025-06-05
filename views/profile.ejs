@@ -5,8 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Profile</title>
   <link rel="stylesheet" href="/css/profile.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <style>
+    .recommendation-box {
+      background-color: #eef9f1;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      max-width: 600px;
+    }
+    .recommendation-box h3 {
+      margin-top: 0;
+      color: #2e7d32;
+    }
+  </style>
 </head>
-<body class="<%= settings.darkMode ? 'dark-mode' : '' %>">
+<body class="<%= (settings && settings.darkMode) ? 'dark-mode' : '' %>">
 
   <!-- Header -->
   <header class="navbar">
@@ -14,103 +31,133 @@
       <img src="/images/logo.jpg" alt="Pathfinder Logo" height="60">
     </div>
     <nav>
-      <a href="home">Home</a>
-      <a href="resources">Resources</a>
-      <a href="mentorship">Mentorship</a>
-      <a href="dashboard">Dashboard</a>
+      <a href="/home">Home</a>
+      <a href="/resources">Resources</a>
+      <a href="/mentorship">Mentorship</a>
+      <a href="/dashboard">Dashboard</a>
     </nav>
+    <div class="nav-buttons">
+      <form action="/toggle-settings" method="POST" style="display:inline;">
+        <button type="submit" class="settings-btn">Settings</button>
+      </form>
+    </div>
+
+    <% if (typeof showSettings !== 'undefined' && showSettings) { %>
+    <div class="settings-popup">
+      <h4>Settings</h4>
+      <form action="/save-settings" method="POST">
+        <label class="switch-label">
+          Enable Notifications
+          <input type="checkbox" name="notifications" <%= settings?.notifications ? "checked" : "" %> />
+        </label>
+        <label class="switch-label">
+          Dark Mode
+          <input type="checkbox" name="darkMode" <%= settings?.darkMode ? "checked" : "" %> />
+        </label>
+        <label class="switch-label">
+          Email Updates
+          <input type="checkbox" name="emailUpdates" <%= settings?.emailUpdates ? "checked" : "" %> />
+        </label>
+        <button type="submit" class="save-settings">Save Changes</button>
+      </form>
+
+      <form action="/logout" method="GET" style="display:inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+      </form>
+
+      <form action="/toggle-settings" method="POST" style="display:inline;">
+        <button type="submit" class="cancel-btn">Cancel</button>
+      </form>
+    </div>
+    <% } %>
   </header>
 
   <div class="profile-container">
-    <div class="profile-header">
-      <div class="profile-info">
-        <img src="/images/prof1.jpg" alt="Profile Picture" class="profile-img" />
-        <div>
-          <h3>Academic Profile</h3>
-          <p>Complete your profile to find colleges that match your academic achievements and interests.</p>
+    <% if (profile) { %>
+      <div class="profile-summary">
+        <h2>Your Submitted Profile</h2>
+
+        <!-- Display profile data -->
+        <p><strong>Name:</strong> <%= profile.full_name %></p>
+        <p><strong>Email:</strong> <%= profile.email %></p>
+        <p><strong>Phone:</strong> <%= profile.phone %></p>
+        <p><strong>Stream:</strong> <%= profile.stream %></p>
+        <p><strong>Marks:</strong> English: <%= profile.english %>, Dzongkha: <%= profile.dzongkha %>, Subject 1: <%= profile.subject1 %>, Subject 2: <%= profile.subject2 %>, Optional: <%= profile.optional %></p>
+        <p><strong>Interests:</strong> <%= profile.interests %></p>
+        <p><strong>Career Aspirations:</strong> <%= profile.aspirations %></p>
+        <p><strong>Activities:</strong> <%= profile.activities %></p>
+        <p><strong>Preferred Location:</strong> <%= profile.location %></p>
+
+        <% if (typeof recommendation !== 'undefined' && recommendation) { %>
+          <div class="recommendation-box">
+            <h3>🎓 Recommended Path</h3>
+            <p><%= recommendation %></p>
+          </div>
+        <% } %>
+      </div>
+
+    <% } else { %>
+      <!-- If no profile is submitted yet -->
+      <div class="profile-header">
+        <div class="profile-info">
+          <img src="/images/prof1.jpg" alt="Profile Picture" class="profile-img" />
+          <div>
+            <h3>Academic Profile</h3>
+            <p>Complete your profile to find colleges that match your academic achievements and interests.</p>
+          </div>
         </div>
       </div>
-      
-      <button class="settings-btn" onclick="toggleSettings()">Settings</button>
-      <div id="settingsPopup" class="settings-popup hidden">
-        <h4>Settings</h4>
-        <label class="switch-label">Enable Notifications
-          <label class="switch">
-            <input type="checkbox" checked>
-            <span class="slider round"></span>
-          </label>
+
+      <form id="profileForm" class="profile-form" method="POST" action="/profile">
+        <label>Full Name
+          <input type="text" name="full_name" placeholder="Enter your full name" required />
         </label>
-        <label class="switch-label">Dark Mode
-          <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span>
-          </label>
+
+        <label>Email
+          <input type="email" name="email" placeholder="Enter your email address" required />
         </label>
-        <label class="switch-label">Email Updates
-          <label class="switch">
-            <input type="checkbox" checked>
-            <span class="slider round"></span>
-          </label>
+
+        <label>Phone Number
+          <input type="tel" name="phone" placeholder="Enter your phone number" required />
         </label>
-        <button class="logout-btn">Logout</button>
-        <div class="popup-buttons">
-          <button onclick="toggleSettings()">Cancel</button>
-          <button id="saveSettingsBtn" class="save-settings">Save Changes</button>
-        </div>
-      </div>
-    </div>
-  
-    <form id="profileForm" class="profile-form">
 
+        <label>Stream
+          <select name="stream" id="stream" required>
+            <option value="" disabled selected>Select Stream</option>
+            <option value="Science">Science</option>
+            <option value="Commerce">Commerce</option>
+            <option value="Arts">Arts</option>
+          </select>
+        </label>
 
-      <label>Full Name
-        <input type="text" name="full_name" placeholder="Enter your full name" required />
-      </label>
+        <h4>Class 12 Marks</h4>
+        <input type="number" name="english" placeholder="English - Enter marks" required />
+        <input type="number" name="dzongkha" placeholder="Dzongkha - Enter marks" required />
+        <input type="number" id="subject1" name="subject1" placeholder="Subject 1 - Enter marks" required />
+        <input type="number" id="subject2" name="subject2" placeholder="Subject 2 - Enter marks" required />
+        <input type="number" name="optional" placeholder="Optional Subject - Enter marks" />
 
-      <label>Email
-        <input type="email" name="email" placeholder="Enter your email address" required />
-      </label>
+        <label>Academic Interests
+          <textarea name="interests" placeholder="Enter academic interests..."></textarea>
+        </label>
 
-      <label>Phone Number
-        <input type="tel" name="phone" placeholder="Enter your phone number" required />
-      </label>
+        <label>Career Aspirations
+          <textarea name="aspirations" placeholder="Enter your career goals..."></textarea>
+        </label>
 
-      <label>Stream
-        <select name="stream" id="stream" required onchange="updateSubjects()">
-          <option value="" disabled selected>Select Stream</option>
-          <option value="Science">Science</option>
-          <option value="Commerce">Commerce</option>
-          <option value="Arts">Arts</option>
-        </select>
-      </label>
+        <label>Extracurricular Activities
+          <input type="text" name="activities" placeholder="Sports, Music, Debate, etc." />
+        </label>
 
-      <h4>Class 12 Marks</h4>
-      <input type="number" name="english" placeholder="English - Enter marks (e.g. 100)" required />
-      <input type="number" name="dzongkha" placeholder="Dzongkha - Enter marks (e.g. 100)" required />
-      <input type="number" id="subject1" name="subject1" placeholder="Subject 1 - Enter marks" required />
-      <input type="number" id="subject2" name="subject2" placeholder="Subject 2 - Enter marks" required />
-      <input type="number" name="optional" placeholder="Optional Subject - Enter marks" />
+        <label>Preferred Location
+          <input type="text" name="location" placeholder="Where would you prefer to study?" />
+        </label>
 
-      <label>Academic Interests
-        <textarea name="interests" placeholder="Enter academic interests..."></textarea>
-      </label>
-
-      <label>Career Aspirations
-        <textarea name="aspirations" placeholder="Enter your career goals..."></textarea>
-      </label>
-
-      <label>Extracurricular Activities
-        <input type="text" name="activities" placeholder="Sports, Music, Debate, etc." />
-      </label>
-
-      <label>Preferred Location
-        <input type="text" name="location" placeholder="Where would you prefer to study?" />
-      </label>
-
-      <button type="submit" class="save-profile-btn">Save Profile</button>
-    </form>
+        <button type="submit" class="save-profile-btn">Save Profile</button>
+      </form>
+    <% } %>
   </div>
-  
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-left">
@@ -124,6 +171,36 @@
       © 2025 Pathfinder. All rights reserved.
     </div>
   </footer>
-  <script src="/js/profile.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const streamDropdown = document.getElementById("stream");
+    const subject1 = document.getElementById("subject1");
+    const subject2 = document.getElementById("subject2");
+
+    // Run only if form exists
+    if (streamDropdown && subject1 && subject2) {
+      streamDropdown.addEventListener("change", function () {
+        const stream = this.value;
+
+        if (stream === "Science") {
+          subject1.placeholder = "Chemistry - Enter marks";
+          subject2.placeholder = "Physics - Enter marks";
+        } else if (stream === "Commerce") {
+          subject1.placeholder = "Business Entrepreneurship - Enter marks";
+          subject2.placeholder = "Accounts - Enter marks";
+        } else if (stream === "Arts") {
+          subject1.placeholder = "History - Enter marks";
+          subject2.placeholder = "Geography - Enter marks";
+        } else {
+          subject1.placeholder = "Subject 1 - Enter marks";
+          subject2.placeholder = "Subject 2 - Enter marks";
+        }
+      });
+    }
+  });
+</script>
+
+
 </body>
 </html>

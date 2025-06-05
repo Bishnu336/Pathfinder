@@ -1,8 +1,16 @@
-exports.saveProfile = (req, res) => {
+exports.saveProfile = async (req, res) => {
+  const user = req.session.user;
   const profileData = req.body;
-  console.log("Received profile data:", profileData);
 
-  // Save to DB here if needed
+  if (!user) {
+    return res.status(401).json({ success: false, error: 'Unauthorized' });
+  }
 
-  res.redirect('/dashboard'); // or res.render('confirmation');
+  try {
+    await profileModel.saveOrUpdateProfile(user.id, profileData);
+    res.json({ success: true });
+  } catch (err) {
+    console.error('❌ Error saving profile:', err);
+    res.status(500).json({ success: false, error: 'Failed to save profile' });
+  }
 };

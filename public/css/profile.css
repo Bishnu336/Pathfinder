@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
-    background: white;
+    background: #11173f;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
@@ -15,7 +15,7 @@
   .navbar nav a {
     margin: 0 15px;
     text-decoration: none;
-    color: #000;
+    color: #fff;
     font-weight: 500;
   }
   
@@ -60,7 +60,8 @@
     object-fit: cover;
   }
   
-  .settings-btn {
+  /*setting*/
+.settings-btn {
     padding: 10px 16px;
     background-color: orange;
     color: white;
@@ -162,10 +163,61 @@
   }
   
   .save-settings {
-    background-color: orange;
+    background-color: #e74c3c;
     color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
   }
   
+  .cancel-btn {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 8px 16px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: #bbb;
+}
+
+
+
+  /* Dark mode overrides */
+.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.dark-mode header,
+.dark-mode .footer,
+.dark-mode .settings-popup {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border-color: #333;
+}
+
+.dark-mode nav a,
+.dark-mode .btn,
+.dark-mode .settings-btn {
+  color: #f1f1f1;
+}
+
+.dark-mode table {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+.dark-mode .card {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
   .profile-form {
     display: flex;
     flex-direction: column;
@@ -237,10 +289,24 @@
   
   .footer-bottom {
     margin-top: 30px;
-    background-color: #f7941e;
+    background-color: #11173f;
     color: #fff;
     text-align: center;
     padding: 10px 0;
     font-weight: bold;
   }
+
+  .recommendation-box {
+      background-color: #eef9f1;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      max-width: 600px;
+    }
+    .recommendation-box h3 {
+      margin-top: 0;
+      color: #2e7d32;
+    }
   

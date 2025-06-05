@@ -50,3 +50,40 @@ router.post('/delete-meeting/:id', async (req, res) => {
 });
 
 module.exports = router;
+
+
+// ✅ GET: Schedule meeting page dynamically by mentorId
+router.get('/schedule/:mentorId', (req, res) => {
+  const mentors = {
+    sm1: {
+      name: 'Dr. Sarah Chen',
+      title: 'MIT Academic Advisor',
+      rating: '⭐ 4.8 (98 students)',
+      tags: ['STEM Programs', 'Research Projects', 'Scholarship Applications'],
+      image: '/images/dr.1.png',
+      description: 'Dr. Sarah specializes in guiding students through academic planning...'
+    },
+    sm2: {
+      name: 'Prof. Sonam Tenzin',
+      title: 'MIT Admissions Mentor',
+      rating: '⭐ 4.7 (110 students)',
+      tags: ['College Applications', 'Interview Prep', 'Leadership'],
+      image: '/images/sonam.png',
+      description: 'Prof. Sonam helps students prepare competitive college applications...'
+    },
+    sm3: {
+      name: 'Dr. Wangmo',
+      title: 'Career Advisor, Sherubtse College',
+      rating: '⭐ 4.9 (156 students)',
+      tags: ['Career Planning', 'Resume Writing', 'Scholarships'],
+      image: '/images/wangmo.png',
+      description: 'Dr. Wangmo guides students through career exploration and opportunities...'
+    }
+  };
+
+  const mentor = mentors[req.params.mentorId];
+
+  if (!mentor) return res.status(404).send('Mentor not found');
+
+  res.render('sm', { mentor });
+});

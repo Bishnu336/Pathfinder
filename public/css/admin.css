@@ -1,4 +1,6 @@
-/* General Styles */
+/* ------------------------------
+   General Styles
+------------------------------- */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -11,23 +13,30 @@ body {
   color: #f1f1f1;
 }
 
-/* Navbar */
+/* ------------------------------
+   Navbar
+------------------------------- */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #4b0082;
+  background-color: #11173f;
   padding: 0.8rem 2rem;
   color: #fff;
+  flex-wrap: wrap;
 }
 
 .navbar img {
   height: 50px;
 }
 
+.navbar nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
 .navbar nav a {
   color: #fff;
-  margin-left: 1.5rem;
   text-decoration: none;
   font-weight: bold;
 }
@@ -37,7 +46,9 @@ body {
   text-decoration: underline;
 }
 
-/* Cards */
+/* ------------------------------
+   Dashboard Cards
+------------------------------- */
 .dashboard-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -67,10 +78,13 @@ body {
   font-weight: bold;
 }
 
-/* Panels */
+/* ------------------------------
+   Management Panels
+------------------------------- */
 .management-panels {
   padding: 0 2rem 2rem;
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
 
@@ -90,10 +104,14 @@ body {
   color: #4b0082;
 }
 
-/* Table */
+/* ------------------------------
+   Table Styling
+------------------------------- */
 .panel table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
+  min-width: 600px;
 }
 
 .panel th,
@@ -111,12 +129,21 @@ body {
   background-color: #444;
 }
 
-/* Buttons */
-button.btn-view,
-button.btn-delete,
+/* Scroll wrapper for responsiveness */
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* ------------------------------
+   Buttons
+------------------------------- */
+button,
+.btn-view,
+.btn-delete,
 a.btn-view-all {
   padding: 0.4rem 0.8rem;
-  margin-right: 0.3rem;
+  margin: 0.3rem 0.3rem 0 0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -142,56 +169,136 @@ a.btn-view-all {
   border-radius: 5px;
 }
 
-/* Footer */
+/* ------------------------------
+   Form Inputs
+------------------------------- */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="email"] {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+/* ------------------------------
+   Footer
+------------------------------- */
 .footer {
-    margin-top: 50px;
-    background: #fff;
-    border-top: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 40px;
-    align-items: center;
-    flex-wrap: wrap;
+  margin-top: 50px;
+  background: #fff;
+  color: #ffffff;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  text-align: left;
+}
+
+.footer-left p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #000;
+}
+
+.footer-left i {
+  margin-right: 6px;
+  color: #000;
+}
+
+.footer-bottom {
+  text-align: center;
+  width: 100%;
+  background: #11173f;
+  color: white;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* ------------------------------
+   Responsive Styles
+------------------------------- */
+@media (max-width: 1024px) {
+  .management-panels {
+    grid-template-columns: 1fr;
   }
-  
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar nav {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar nav a {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .management-panels {
+    padding: 1rem;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
   .footer-left {
-    text-align: left;
+    margin-bottom: 1rem;
   }
-  
-  .footer-left p {
-    margin: 5px 0;
-    font-size: 14px;
-  }
-  
-  .footer-left i {
-    margin-right: 6px;
-  }
-  
+
   .footer-bottom {
     text-align: center;
-    width: 100%;
-    background: #ff9800;
-    color: white;
-    padding: 10px 0;
-    font-size: 14px;
-    font-weight: bold;
   }
 
+  button,
+  .btn-delete,
+  .btn-view,
+  .btn-view-all {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
 
-  table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
-      text-align: center;
-    }
-    input[type="text"], input[type="date"], input[type="time"], input[type="email"] {
-      width: 90%;
-      padding: 5px;
-    }
-    .actions button {
-      margin: 0 2px;
-    }
+  .card p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar img {
+    height: 40px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 1.1rem;
+  }
+
+  .footer-left p {
+    font-size: 12px;
+  }
+}

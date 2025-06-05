@@ -11,7 +11,7 @@ const mentorshipRoutes = require('./routes/mentorshipRoutes');
 const workshopRoutes = require('./routes/workshopRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const profileRoutes = require('./routes/profileRoutes');
-const collegeRoutes = require('./routes/collegeRoutes');
+const collegeRoutes = require('./routes/collegeRoutes.js');
 
 // ---------- DB Setup ----------
 const db = require('./config/db');

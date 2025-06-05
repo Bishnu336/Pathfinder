@@ -2,7 +2,8 @@ const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const userModel = require('../models/userModel');
-const mentorshipModel = require('../models/mentorshipModel'); // ✅ Use mentorshipModel instead of meetingModel
+const mentorshipModel = require('../models/mentorshipModel');
+const profileModel = require('../models/stdprofileModel');
 
 // Email transporter using Gmail
 const transporter = nodemailer.createTransport({
@@ -13,7 +14,49 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// ------------------- Signup (with email verification) -------------------
+// ------------------- Helper: Calculate Course Recommendation -------------------
+function getCourseRecommendation(profile) {
+  const scores = [
+    profile.english,
+    profile.dzongkha,
+    profile.subject1,
+    profile.subject2,
+    profile.optional
+  ];
+
+  const validScores = scores.filter(score => typeof score === 'number' && !isNaN(score));
+  const avg = validScores.length ? validScores.reduce((sum, val) => sum + val, 0) / validScores.length : 0;
+
+  const stream = (profile.stream || '').toLowerCase();
+
+  if (stream === 'science') {
+    if (avg >= 80) return 'MBBS – KGUMSB / BSc or Engineering – CST';
+    if (avg >= 70) return 'Engineering – JNEC / BSc – Sherubtse';
+    if (avg >= 60) return 'Agriculture or Forestry – CNR / Education – SCE';
+    if (avg >= 50) return 'Technical Training – VTI / Language & Culture – CLCS';
+    return 'Diploma courses / Consider reattempting exams';
+  }
+
+  if (stream === 'commerce') {
+    if (avg >= 80) return 'Business Intelligence or Accounting – GCBS / Data Science – Sherubtse';
+    if (avg >= 70) return 'B.Com or BBA – GCBS / Digital Communication – Sherubtse';
+    if (avg >= 60) return 'Education – SCE / Sustainable Development – CNR';
+    if (avg >= 50) return 'Language & Culture – CLCS / Short-term training programs';
+    return 'Diploma in Business or IT / Reattempt suggestion';
+  }
+
+  if (stream === 'arts') {
+    if (avg >= 80) return 'BA in Language & Culture – CLCS / Digital Communication – Sherubtse';
+    if (avg >= 70) return 'B.Ed – Paro/Samtse / BA in Political Science – Sherubtse';
+    if (avg >= 60) return 'Sustainable Development – CNR / B.Ed in Dzongkha – PCE';
+    if (avg >= 50) return 'Short-term skill training / Language programs – CLCS';
+    return 'Diploma courses / Try again next year';
+  }
+
+  return 'Stream not specified or invalid';
+}
+
+// ------------------- Signup -------------------
 exports.signup = async (req, res) => {
   const { name, email, password, confirmPassword, role } = req.body;
   if (password !== confirmPassword) {
@@ -61,12 +104,12 @@ exports.verifyEmail = async (req, res) => {
   }
 };
 
-// ------------------- Login (Admin from .env or user from DB) -------------------
+// ------------------- Login -------------------
 exports.login = async (req, res) => {
   const { email, password, role } = req.body;
 
   try {
-    // 1. Admin login via .env
+    
     if (
       email === process.env.ADMIN_EMAIL &&
       password === process.env.ADMIN_PASSWORD &&
@@ -80,7 +123,7 @@ exports.login = async (req, res) => {
 
       const stats = await userModel.getAdminStats();
       const users = await userModel.getAllUsers();
-      const meetings = await mentorshipModel.getAllMeetings(); // ✅ Fixed
+      const meetings = await mentorshipModel.getAllMeetings();
 
       return res.render('admin', {
         user: req.session.user,
@@ -90,7 +133,7 @@ exports.login = async (req, res) => {
       });
     }
 
-    // 2. Normal user login via DB
+
     const user = await userModel.findUserByEmail(email);
     if (!user || !user.verified) {
       return res.render('login', { error: 'Email not verified or user not found.' });
@@ -106,24 +149,11 @@ exports.login = async (req, res) => {
     }
 
     req.session.user = {
-      id: user.id,
+
       name: user.name,
       email: user.email,
       role: user.role
     };
-
-    if (user.role === 'admin') {
-      const stats = await userModel.getAdminStats();
-      const users = await userModel.getAllUsers();
-      const meetings = await mentorshipModel.getAllMeetings(); // ✅ Fixed
-
-      return res.render('admin', {
-        user: req.session.user,
-        stats,
-        users,
-        meetings
-      });
-    }
 
     res.redirect('/home');
   } catch (err) {
@@ -190,13 +220,68 @@ exports.logout = (req, res) => {
   });
 };
 
-// ------------------- Get Profile -------------------
-exports.getProfile = (req, res) => {
+// ------------------- Post Profile (Save/Update & Recommendation) -------------------
+exports.postProfile = async (req, res) => {
   const user = req.session.user;
+  if (!user) return res.redirect('/login');
 
-  if (!user) {
-    return res.redirect('/login');
+  try {
+    // Calculate recommendation
+    const recommendation = getCourseRecommendation({
+      english: parseFloat(req.body.english),
+      dzongkha: parseFloat(req.body.dzongkha),
+      subject1: parseFloat(req.body.subject1),
+      subject2: parseFloat(req.body.subject2),
+      optional: parseFloat(req.body.optional),
+      stream: req.body.stream
+    });
+
+    // Save profile with recommendation
+    await profileModel.saveOrUpdateProfile(user.email, {
+      ...req.body,
+      recommendation
+    });
+
+    const profile = await profileModel.getProfileByEmail(user.email);
+
+    res.render('profile', {
+      user,
+      profile,
+      recommendation,
+      success: 'Profile submitted successfully.'
+    });
+  } catch (err) {
+    console.error('Error submitting profile:', err);
+    res.render('profile', {
+      user,
+      profile: req.body,
+      recommendation: null,
+      error: 'Something went wrong. Please try again.'
+    });
+  }
+};
+
+// ------------------- Get Profile -------------------
+exports.getProfile = async (req, res) => {
+  const user = req.session.user;
+  if (!user) return res.redirect('/login');
+
+  try {
+    const profile = await profileModel.getProfileByEmail(user.email);
+    const recommendation = profile ? getCourseRecommendation(profile) : null;
+
+    res.render('profile', {
+      user,
+      profile,
+      recommendation
+    });
+  } catch (err) {
+    console.error('Error loading profile:', err);
+    res.render('profile', {
+      user,
+      profile: null,
+      recommendation: null
+    });
   }
 
-  res.render('profile', { user });
 };

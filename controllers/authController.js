@@ -53,7 +53,7 @@ exports.verifyEmail = async (req, res) => {
     const user = await userModel.findUserByEmail(email);
     if (user && user.token === token) {
       await userModel.verifyUser(email);
-      return res.send('Email verified. <a href="/login">Login</a>');
+      return res.redirect('/login'); // 🔁 Redirect to login
     }
     res.send('Invalid or expired verification link.');
   } catch (err) {

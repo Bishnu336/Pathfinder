@@ -31,8 +31,9 @@ exports.signup = async (req, res) => {
 
     await userModel.createUser(name, email, hashedPassword, role, token);
 
-    const link = `http://localhost:3000/verify?email=${email}&token=${token}`;
-    await transporter.sendMail({
+    const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+const link = `${baseUrl}/verify?email=${email}&token=${token}`;
+await transporter.sendMail({
       to: email,
       subject: 'Verify your email',
       html: `<p>Click <a href="${link}">here</a> to verify your email.</p>`

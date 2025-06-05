@@ -13,6 +13,9 @@ const adminRoutes = require('./routes/adminRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const collegeRoutes = require('./routes/collegeRoutes.js');
 
+
+ 
+
 // ---------- DB Setup ----------
 const db = require('./config/db');
 db.one("SELECT NOW()")

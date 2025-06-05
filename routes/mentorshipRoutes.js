@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db'); // ✅ Import DB connection
-const mentorshipController = require('../controllers/mentorshipcontroller');
+const mentorshipController = require('../controllers/mentorshipController');
 const { getAllMeetings } = require('../models/mentorshipModel');
 
 // ✅ GET: Render manage meetings page

@@ -35,111 +35,100 @@ body {
       cursor: pointer;
     }
 
-    .settings-btn {
-      padding: 10px 16px;
-      background-color: orange;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+    .nav-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
-    .settings-popup {
-      position: absolute;
-      top: 100px;
-      right: 40px;
-      background-color: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      z-index: 100;
-      width: 280px;
-    }
+.btn {
+  padding: 0.3rem 1rem;
+  background-color: #f7941e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-    .hidden {
-      display: none;
-    }
+.btn:hover {
+  background-color: #e67e22;
+}
 
-    .switch-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      font-size: 15px;
-    }
+.settings-btn {
+  padding: 10px 16px;
+  background-color: #f7941e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 40px;
-      height: 22px;
-    }
+.settings-popup {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  width: 280px;
+}
 
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
+.switch-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ccc;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
 
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      background-color: #ccc;
-      transition: 0.4s;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 34px;
-    }
+.save-settings,
+.logout-btn,
+.cancel-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+  font-weight: bold;
+}
 
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 16px;
-      width: 16px;
-      left: 4px;
-      bottom: 3px;
-      background-color: white;
-      transition: 0.4s;
-      border-radius: 50%;
-    }
+.save-settings {
+  background-color: #4CAF50;
+  color: white;
+}
 
-    input:checked + .slider {
-      background-color: #4a90e2;
-    }
+.logout-btn {
+  background-color: #e74c3c;
+  color: white;
+}
 
-    input:checked + .slider:before {
-      transform: translateX(16px);
-    }
+.cancel-btn {
+  background-color: #888;
+  color: white;
+}
 
-    .logout-btn {
-      background-color: #e74c3c;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      margin: 10px 0;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+.hidden {
+  display: none;
+}
 
-    .popup-buttons {
-      display: flex;
-      justify-content: space-between;
-    }
+@media (max-width: 480px) {
+  .nav-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
 
-    .popup-buttons button {
-      padding: 8px 14px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      background: #ddd;
-    }
-
-    .save-settings {
-      background-color: orange;
-      color: white;
-    }
+  .settings-popup {
+    right: 20px;
+    width: 90%;
+  }
+}
 
     .college-section {
       padding: 2rem;

@@ -1,194 +1,190 @@
-/* Navbar */
+/* Base styles (already great, just organized slightly) */
+
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background: #11173f;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  .navbar .logo img {
-    height: 50px;
-  }
-  
-  .navbar nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 500;
-  }
-  
-  .nav-buttons button {
-    margin-left: 10px;
-    padding: 6px 14px;
-    border: none;
-    background: orange;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #11173f;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
+.navbar .logo img {
+  height: 50px;
+}
 
-  .profile-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  .profile-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-  
-  .profile-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .profile-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  /*setting*/
-.settings-btn {
-    padding: 10px 16px;
-    background-color: orange;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  .settings-popup {
-    position: absolute;
-    top: 100px;
-    right: 40px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    z-index: 100;
-    width: 280px;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  .switch-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    font-size: 15px;
-  }
-  
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 22px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    background-color: #ccc;
-    transition: 0.4s;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 34px;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .slider {
-    background-color: #4a90e2;
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(16px);
-  }
-  
-  .logout-btn {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    margin: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .popup-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .popup-buttons button {
-    padding: 8px 14px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    background: #ddd;
-  }
-  
-  .save-settings {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    margin: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .cancel-btn {
-  background-color: #e74c3c;
+.navbar nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.navbar nav a {
+  text-decoration: none;
   color: #fff;
-  padding: 8px 16px;
-  margin-left: 10px;
+  font-weight: 500;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-buttons button {
+  padding: 6px 14px;
   border: none;
+  background: orange;
+  color: white;
   border-radius: 4px;
   cursor: pointer;
+}
+
+/* Profile */
+
+.profile-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Settings */
+
+.settings-btn {
+  padding: 10px 16px;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.settings-popup {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 100;
+  width: 280px;
+}
+
+.hidden {
+  display: none;
+}
+
+.switch-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  transition: 0.4s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4a90e2;
+}
+
+input:checked + .slider:before {
+  transform: translateX(16px);
+}
+
+.logout-btn,
+.save-settings,
+.cancel-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup-buttons button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #ddd;
 }
 
 .cancel-btn:hover {
   background-color: #bbb;
 }
 
+/* Dark mode */
 
-
-  /* Dark mode overrides */
 .dark-mode {
   background-color: #121212;
   color: #f1f1f1;
@@ -208,105 +204,175 @@
   color: #f1f1f1;
 }
 
-.dark-mode table {
-  background-color: #1e1e1e;
-  color: #f1f1f1;
-}
-
+.dark-mode table,
 .dark-mode .card {
   background-color: #2a2a2a;
   color: #fff;
 }
 
-  .profile-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .profile-form label {
-    display: flex;
-    flex-direction: column;
-    font-weight: 500;
-  }
-  
-  #popupMessage {
+/* Profile Form */
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.profile-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+
+.profile-form input,
+.profile-form textarea,
+.profile-form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+#popupMessage {
   transition: all 0.5s ease;
   opacity: 0.9;
 }
 
-  .profile-form input, .profile-form textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
-  }
-  
-  .save-profile-btn {
-    margin-top: 20px;
-    padding: 12px;
-    font-size: 16px;
-    background-color: orange;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
+.save-profile-btn {
+  margin-top: 20px;
+  padding: 12px;
+  font-size: 16px;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-  /* Footer */
+/* Footer */
+
+.footer {
+  background: #fff;
+  padding: 30px 50px 0;
+  border-top: 1px solid #ccc;
+  position: relative;
+}
+
+.footer-left {
+  text-align: left;
+  max-width: 300px;
+}
+
+.footer-left h3 {
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.footer-line {
+  width: 60px;
+  height: 2px;
+  background-color: #000;
+  border: none;
+  margin-bottom: 15px;
+}
+
+.footer-left p {
+  margin: 6px 0;
+  font-weight: 500;
+  color: #333;
+}
+
+.footer-bottom {
+  margin-top: 30px;
+  background-color: #11173f;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-weight: bold;
+}
+
+/* Recommendation Box */
+
+.recommendation-box {
+  background-color: #eef9f1;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  max-width: 600px;
+}
+
+.recommendation-box h3 {
+  margin-top: 0;
+  color: #2e7d32;
+}
+
+/* Stream Section Styling (like subject fields) */
+.stream-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.stream-group label {
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.stream-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fff;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .navbar, .navbar nav, .nav-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .profile-container {
+    margin: 20px 10px;
+    padding: 15px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .footer {
-    background: #fff;
-    padding: 30px 50px 0;
-    border-top: 1px solid #ccc;
-    position: relative;
-  }
-  
-  .footer-left {
-    text-align: left;
-    max-width: 300px;
-  }
-  
-  .footer-left h3 {
-    margin-bottom: 5px;
-    font-size: 1.2rem;
-    color: #000;
-  }
-  
-  .footer-line {
-    width: 60px;
-    height: 2px;
-    background-color: #000;
-    border: none;
-    margin-bottom: 15px;
-  }
-  
-  .footer-left p {
-    margin: 6px 0;
-    font-weight: 500;
-    color: #333;
-  }
-  
-  .footer-bottom {
-    margin-top: 30px;
-    background-color: #11173f;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    font-weight: bold;
+    padding: 20px;
   }
 
   .recommendation-box {
-      background-color: #eef9f1;
-      border: 1px solid #ccc;
-      padding: 15px;
-      margin-top: 20px;
-      border-radius: 10px;
-      font-size: 16px;
-      max-width: 600px;
-    }
-    .recommendation-box h3 {
-      margin-top: 0;
-      color: #2e7d32;
-    }
-  
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .save-profile-btn,
+  .settings-btn,
+  .logout-btn,
+  .cancel-btn {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .navbar nav a {
+    font-size: 14px;
+  }
+}

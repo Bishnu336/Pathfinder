@@ -10,53 +10,59 @@
    <!-- Header -->
   <header class="navbar">
     <div class="logo">
-      <img src="images/logo.jpg" alt="Pathfinder Logo"  height="60">
+      <img src="/images/logo.jpg" alt="Pathfinder Logo"  height="60">
     </div>
     <nav>
-      <a href="home">Home</a>
-      <a href="resources">Resources</a>
-      <a href="mentorship">Mentorship</a>
-      <a href="dashboard">Dashboard</a>
+      <a href="/home">Home</a>
+      <a href="/resources">Resources</a>
+      <a href="/mentorship">Mentorship</a>
+      <a href="/dashboard">Dashboard</a>
     </nav>
-    <div class="nav-buttons">
-      <button class="btn-orange"><a href="profile">Profile</a></button>
-      
-      <button class="settings-btn" onclick="toggleSettings()">Settings</button>
-      <div id="settingsPopup" class="settings-popup hidden">
-        <h4>Settings</h4>
-        <label class="switch-label">Enable Notifications
-          <label class="switch">
-            <input type="checkbox" checked>
-            <span class="slider round"></span>
-          </label>
-        </label>
-        <label class="switch-label">Dark Mode
-          <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span>
-          </label>
-        </label>
-        <label class="switch-label">Email Updates
-          <label class="switch">
-            <input type="checkbox" checked>
-            <span class="slider round"></span>
-          </label>
-        </label>
-        <button class="logout-btn">Logout</button>
-        <div class="popup-buttons">
-          <button onclick="toggleSettings()">Cancel</button>
-          <button id="saveSettingsBtn" class="save-settings">Save Changes</button>
 
-        </div>
-      </div>
+    <div class="nav-buttons">
+      <a href="/profile" class="btn btn-orange">Profile</a>
+      <form action="/toggle-settings" method="POST" style="display:inline;">
+       <button type="submit" class="settings-btn">Settings</button>
+        </form>
+
     </div>
-  </header> 
+
+    <% if (showSettings) { %>
+    <div class="settings-popup">
+      <h4>Settings</h4>
+      <form action="/save-settings" method="POST">
+        <label class="switch-label">
+          Enable Notifications
+          <input type="checkbox" name="notifications" <%= settings.notifications ? "checked" : "" %> />
+        </label>
+        <label class="switch-label">
+          Dark Mode
+          <input type="checkbox" name="darkMode" <%= settings.darkMode ? "checked" : "" %> />
+        </label>
+        <label class="switch-label">
+          Email Updates
+          <input type="checkbox" name="emailUpdates" <%= settings.emailUpdates ? "checked" : "" %> />
+        </label>
+        <button type="submit" class="save-settings">Save Changes</button>
+      </form>
+
+      <form action="/logout" method="GET" style="display:inline;">
+  <button type="submit" class="logout-btn">Logout</button>
+</form>
+
+<form action="/toggle-settings" method="POST" style="display:inline;">
+  <button type="submit" class="cancel-btn">Cancel</button>
+</form>
+
+    </div>
+    <% } %>
+  </header>
 
     
   <!-- GCIT Section -->
 <section class="college-section">
   <div class="college-header">
-    <img src="images/gcit.jpg" alt="GCIT" class="college-img">
+    <img src="/images/GCIT.jpg" alt="GCIT" class="college-img">
     <div>
       <h1>Gyalpozhing College of Information Technology</h1>
       <p>Chamjekha, Thimphu, Bhutan</p>
@@ -234,10 +240,10 @@
     </p>
 
     <div class="campus-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 1rem;">
-      <img src="images/GCIT.jpg" alt="GCIT Campus 1" style="width: 100%; border-radius: 8px;">
-      <img src="images/gcit2.jpg" alt="GCIT Campus 2" style="width: 100%; border-radius: 8px;">
-      <img src="images/gcit3.jpg" alt="GCIT Campus 3" style="width: 100%; border-radius: 8px;">
-      <img src="images/gcit4.jpg" alt="GCIT Campus 4" style="width: 100%; border-radius: 8px;">
+      <img src="/images/GCIT.jpg" alt="GCIT Campus 1" style="width: 100%; border-radius: 8px;">
+      <img src="/images/gcit2.jpg" alt="GCIT Campus 2" style="width: 100%; border-radius: 8px;">
+      <img src="/images/gcit3.jpg" alt="GCIT Campus 3" style="width: 100%; border-radius: 8px;">
+      <img src="/images/gcit4.jpg" alt="GCIT Campus 4" style="width: 100%; border-radius: 8px;">
     </div>
   </div>
 </section>

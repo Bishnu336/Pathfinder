@@ -5,8 +5,8 @@ router.get('/cst', (req, res) => {
   res.render('cst', { settings: req.session.settings || {} });
 });
 
-router.get('/gcbs', (req, res) => {
-  res.render('gcbs', { settings: req.session.settings || {} });
+router.get('/gedu', (req, res) => {
+  res.render('gedu', { settings: req.session.settings || {} });
 });
 
 router.get('/paro', (req, res) => {

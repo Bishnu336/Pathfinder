@@ -3,6 +3,8 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const userModel = require('../models/userModel');
 const mentorshipModel = require('../models/mentorshipModel'); // ✅ Use mentorshipModel instead of meetingModel
+const profileModel = require('../models/stdprofileModel');
+
 
 // Email transporter using Gmail
 const transporter = nodemailer.createTransport({
@@ -32,8 +34,8 @@ exports.signup = async (req, res) => {
     await userModel.createUser(name, email, hashedPassword, role, token);
 
     const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
-const link = `${baseUrl}/verify?email=${email}&token=${token}`;
-await transporter.sendMail({
+    const link = `${baseUrl}/verify?email=${email}&token=${token}`;
+    await transporter.sendMail({
       to: email,
       subject: 'Verify your email',
       html: `<p>Click <a href="${link}">here</a> to verify your email.</p>`
@@ -192,12 +194,30 @@ exports.logout = (req, res) => {
 };
 
 // ------------------- Get Profile -------------------
-exports.getProfile = (req, res) => {
+exports.getProfile = async (req, res) => {
   const user = req.session.user;
 
   if (!user) {
     return res.redirect('/login');
   }
 
-  res.render('profile', { user });
+  try {
+    const profile = await profileModel.getProfileByEmail(user.email);
+    const recommendation = profile ? getCourseRecommendation(profile) : null;
+
+    res.render('profile', {
+      user,
+      profile: profile || null,
+      recommendation: recommendation || null
+    });
+  } catch (err) {
+    console.error('Error loading profile:', err);
+    res.render('profile', {
+      user,
+      profile: null,
+      recommendation: null,
+      error: 'Failed to load profile.'
+    });
+  }
 };
+

@@ -1,7 +1,7 @@
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
 
-// Auto-create users table if it doesn't exist
+// Create table
 const createUsersTable = async () => {
   try {
     await db.none(`
@@ -10,7 +10,6 @@ const createUsersTable = async () => {
         name VARCHAR(100) NOT NULL,
         email VARCHAR(100) UNIQUE NOT NULL,
         password TEXT NOT NULL,
-        role VARCHAR(10) CHECK (role IN ('user', 'admin')) NOT NULL,
         verified BOOLEAN DEFAULT FALSE,
         token TEXT,
         reset_token TEXT,
@@ -18,7 +17,7 @@ const createUsersTable = async () => {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
-    console.log("✅ Users table ready");
+    console.log("✅ Users table ready (no role)");
   } catch (err) {
     console.error("❌ Error creating users table:", err);
   }
@@ -28,11 +27,11 @@ createUsersTable();
 
 module.exports = {
   // Create a new user
-  createUser: async (name, email, hashedPassword, role, token) => {
+  createUser: async (name, email, hashedPassword, token) => {
     return db.one(
-      `INSERT INTO users(name, email, password, role, token, verified)
-       VALUES($1, $2, $3, $4, $5, FALSE) RETURNING *`,
-      [name, email, hashedPassword, role, token]
+      `INSERT INTO users(name, email, password, token, verified)
+       VALUES($1, $2, $3, $4, FALSE) RETURNING *`,
+      [name, email, hashedPassword, token]
     );
   },
 
@@ -41,7 +40,7 @@ module.exports = {
     return db.oneOrNone('SELECT * FROM users WHERE email = $1', [email]);
   },
 
-  // Verify user email
+  // Verify user
   verifyUser: async (email) => {
     return db.none(
       `UPDATE users SET verified = true, token = NULL WHERE email = $1`,
@@ -49,7 +48,7 @@ module.exports = {
     );
   },
 
-  // Set reset token
+  // Set password reset token
   setResetToken: async (email, token, expires) => {
     return db.none(
       `UPDATE users SET reset_token = $1, reset_expires = $2 WHERE email = $3`,
@@ -72,22 +71,18 @@ module.exports = {
     return db.any('SELECT * FROM users ORDER BY created_at DESC LIMIT 10');
   },
 
-  // Get dashboard stats
+  // Admin stats (role-based stats removed)
   getAdminStats: async () => {
     const totalUsers = await db.one('SELECT COUNT(*) FROM users');
     const verifiedUsers = await db.one('SELECT COUNT(*) FROM users WHERE verified = true');
-    const adminCount = await db.one("SELECT COUNT(*) FROM users WHERE role = 'admin'");
-    const userCount = await db.one("SELECT COUNT(*) FROM users WHERE role = 'user'");
 
     return {
       totalUsers: parseInt(totalUsers.count),
-      verifiedUsers: parseInt(verifiedUsers.count),
-      adminCount: parseInt(adminCount.count),
-      userCount: parseInt(userCount.count)
+      verifiedUsers: parseInt(verifiedUsers.count)
     };
   },
 
-  // ✅ NEW: Get all meetings for admin dashboard
+  // Get all meetings
   getAllMeetings: async () => {
     return db.any(`
       SELECT 

@@ -10,10 +10,16 @@ body {
   background-color: #fff;
   color: #333;
   line-height: 1.6;
+  padding-top: 90px; 
 }
 
 /* Header */
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
   background-color: #11173f;
   padding: 1rem 2rem;
   display: flex;
@@ -23,7 +29,6 @@ header {
   flex-wrap: wrap;
   color: #ffffff;
 }
-
 nav a {
   text-decoration: none;
   color: #ffffff;

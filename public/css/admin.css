@@ -3,6 +3,7 @@
 ------------------------------- */
 body {
   margin: 0;
+   padding-top: 70px;
   font-family: 'Segoe UI', sans-serif;
   background-color: #f5f5f5;
   color: #333;
@@ -17,13 +18,21 @@ body {
    Navbar
 ------------------------------- */
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+
   background-color: #11173f;
   padding: 0.8rem 2rem;
   color: #fff;
-  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .navbar img {

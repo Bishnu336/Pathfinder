@@ -1,13 +1,25 @@
 /* Base styles (already great, just organized slightly) */
 
+body {
+  padding-top: 80px; /* Equal to or greater than .navbar height */
+}
+
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
+
   background: #11173f;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-sizing: border-box;
 }
 
 .navbar .logo img {

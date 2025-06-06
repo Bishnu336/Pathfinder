@@ -354,3 +354,15 @@ nav {
     width: 90%;
   }
 }
+@media (max-width: 480px) {
+  .btn,
+  .settings-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    border-radius: 6px;
+  }
+}

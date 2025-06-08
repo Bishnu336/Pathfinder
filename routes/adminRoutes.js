@@ -134,4 +134,25 @@ router.post('/admin/users/edit/:id', async (req, res) => {
   }
 });
 
+// Delete from users table only
+router.post('/admin/users/delete-user-only/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log('🧨 Dashboard delete request for user ID:', id);
+
+    
+    await db.none('DELETE FROM users WHERE id = $1', [id]);
+
+    // Optional: if you have a foreign key in student_profiles referencing users.id,
+    // make sure it's either deleted first or ON DELETE CASCADE is set
+
+    return res.redirect('/admin');
+  } catch (err) {
+    console.error('❌ Error deleting user:', err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+
+
 module.exports = router;

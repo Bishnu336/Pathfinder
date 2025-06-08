@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Manage Meetings</title>
-  <link rel="stylesheet" href="/css/admin.css" />
+  <link rel="stylesheet" href="/css/manage.css" />
 
 </head>
 <body>
@@ -50,6 +50,22 @@
   function confirmDelete() {
     return confirm("Are you sure you want to delete this meeting?");
   }
+
+  // Add data-labels dynamically based on <th> content
+  document.addEventListener("DOMContentLoaded", () => {
+    const table = document.querySelector("table");
+    if (!table) return;
+
+    const headers = Array.from(table.querySelectorAll("thead th")).map(th => th.innerText.trim());
+    
+    table.querySelectorAll("tbody tr").forEach(row => {
+      row.querySelectorAll("td").forEach((td, i) => {
+        td.setAttribute("data-label", headers[i] || "");
+      });
+    });
+  });
+
+
 </script>
 
 </body>

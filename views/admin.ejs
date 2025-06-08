@@ -64,9 +64,10 @@
                 <td><%= user.email %></td>
                 <td><%= user.role %></td>
                 <td>
-                  <form action="/admin/users/delete/<%= user.id %>?from=dashboard" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
-                    <button type="submit" class="btn-delete">Delete</button>
-                  </form>
+                  <form action="/admin/users/delete-user-only/<%= user.id %>?from=dashboard" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+  <button type="submit" class="btn-delete">Delete</button>
+</form>
+
                 </td>
               </tr>
             <% }) %>

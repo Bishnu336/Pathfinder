@@ -1,0 +1,138 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  color: #333;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"] {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+form {
+  display: inline;
+}
+
+button[type="submit"] {
+  padding: 6px 12px;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:first-child {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+button[type="submit"]:first-child:hover {
+  background-color: #1976D2;
+}
+
+button[type="submit"]:last-child {
+  background-color: #f44336;
+  color: #fff;
+}
+
+button[type="submit"]:last-child:hover {
+  background-color: #d32f2f;
+}
+
+a[href="/admin"] {
+  display: inline-block;
+  margin-top: 20px;
+  color: #2196F3;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a[href="/admin"]:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  margin-top: 30px;
+  font-size: 1.6rem;
+  color: #333;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  td {
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  td:before {
+    content: attr(data-label);
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 45%;
+    font-weight: bold;
+    color: #555;
+    white-space: nowrap;
+  }
+
+  input, button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+

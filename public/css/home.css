@@ -29,6 +29,11 @@ header {
   flex-wrap: wrap;
   color: #ffffff;
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5a54326 (first p)
 nav a {
   text-decoration: none;
   color: #ffffff;
@@ -354,6 +359,10 @@ nav {
     width: 90%;
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5a54326 (first p)
 @media (max-width: 480px) {
   .btn,
   .settings-btn {
